@@ -39,3 +39,8 @@ alta, baja y modificación de los mismos.
 IMPORTANTE:  los  id  deben  ser  únicos,  por  lo  tanto  al 
 generarse,  antes  de  guardarlos  se  debe  validar  que  no 
 exista. Si ya existe se debe volver a generar.
+
+
+Link de Repositorio remoto GitHub: https://github.com/DiegoFischer01/TP_Final_FIP_Scrum.git
+
+Link de Repositorio Trello: https://trello.com/invite/b/66b6910bdf8c6e1090d86ea4/ATTIcdb6b49cb8716cb4c73283426996df98417BECC0/programacion
