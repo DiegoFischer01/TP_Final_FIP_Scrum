@@ -1,5 +1,6 @@
 import { Cliente } from "./cliente";
 import { Mascota } from "./Mascota";
+
 // import { Proveedor } from './Proveedor';
 // import { Veterinaria } from './Veterinaria';
 
@@ -15,7 +16,7 @@ console.log(clienteJuan);
 
 clienteJuan.getId();
 
-const Diego = new Cliente ("Diego Fischer", "2284-507340",[{nombre:"Ciri", especie:"gato"}]);
-console.log(Diego);
-Diego.getId();
+const diego = new Cliente("Diego Fischer", "2284-507340", [{ nombre: "Ciri", especie: "gato" }]);
+console.log(diego.getId());
+
 
