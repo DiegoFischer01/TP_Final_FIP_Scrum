@@ -1,4 +1,4 @@
-import { generarID } from './id';
+import { generadorID, GeneradorID } from './id';
 import { Mascota } from './Mascota';
 
 export class Cliente {
@@ -9,17 +9,17 @@ export class Cliente {
     visitas: number;
     mascotas: Mascota[];
 
-    constructor(nombre: string, telefono: string, mascota: { nombre: string, especie: string }[]) {
-        this.id = generarID(); // Usamos la función importada // Puede ser una class o una interface.
+    constructor(nombre: string, telefono: string, mascotas: { nombre: string, especie: string }[]) {
+        this.id = generadorID.generarID(); // Usamos la instancia del generador de ID
         this.nombre = nombre;
         this.telefono = telefono;
         this.visitas = 0;
         this.vip = false;
-        this.mascotas = mascota.map(mascota => new Mascota(mascota.nombre, mascota.especie, this.id));
+        this.mascotas = mascotas.map(m => new Mascota(m.nombre, m.especie, this.id));
     }
 
-    getId(): number { 
-        return this.id; 
+    getId(): number {
+        return this.id;
     }
 
     incrementarVisitas(): void {
@@ -29,3 +29,4 @@ export class Cliente {
         }
     }
 }
+
