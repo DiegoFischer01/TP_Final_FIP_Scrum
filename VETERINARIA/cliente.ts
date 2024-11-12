@@ -9,13 +9,13 @@ export class Cliente {
     visitas: number;
     mascotas: Mascota[];
 
-    constructor(nombre: string, telefono: string, nombresMascotas: { nombre: string, especie: string }[]) {
+    constructor(nombre: string, telefono: string, mascota: { nombre: string, especie: string }[]) {
         this.id = generarID(); // Usamos la función importada // Puede ser una class o una interface.
         this.nombre = nombre;
         this.telefono = telefono;
         this.visitas = 0;
         this.vip = false;
-        this.mascotas = nombresMascotas.map(mascota => new Mascota(mascota.nombre, mascota.especie, this.id));
+        this.mascotas = mascota.map(mascota => new Mascota(mascota.nombre, mascota.especie, this.id));
     }
 
     getId(): number { 
