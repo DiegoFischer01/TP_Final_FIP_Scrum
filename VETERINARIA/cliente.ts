@@ -30,3 +30,28 @@ export class Cliente {
     }
 }
 
+class GestionClientes {
+    private clientes: Cliente[] = [];
+  
+    agregarCliente(nombre: string, telefono: string, nombresMascotas: { nombre: string, especie: string }[]): void {
+      const cliente = new Cliente(nombre, telefono, nombresMascotas);
+      this.clientes.push(cliente);
+      console.log(`Cliente ${nombre} agregado con ID ${cliente.id}.`);
+    }
+  
+    modificarCliente(id: number, nombre?: string, telefono?: string): void {
+      const cliente = this.clientes.find(c => c.id === id);
+      if (cliente) {
+        if (nombre) cliente.nombre = nombre;
+        if (telefono) cliente.telefono = telefono;
+        console.log(`Cliente con ID ${id} modificado.`);
+      } else {
+        console.log(`Cliente con ID ${id} no encontrado.`);
+      }
+    }
+  
+    eliminarCliente(id: number): void {
+      this.clientes = this.clientes.filter(c => c.id !== id);
+      console.log(`Cliente con ID ${id} eliminado.`);
+    }
+  }
