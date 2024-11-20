@@ -35,12 +35,13 @@ export class GestionPacientes {
     }
   
     eliminarPaciente(id: number, nombre: string): void {
-        const originalLength = this.pacientes.length;
-        this.pacientes = this.pacientes.filter(p => !(p.id === id && p.nombre === nombre));
-        if (this.pacientes.length < originalLength) {
-            console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
-        } else {
-            console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
+        for (let i = 0; i < this.pacientes.length; i++) {
+            if (this.pacientes[i].id === id && this.pacientes[i].nombre === nombre) {
+                this.pacientes.splice(i, 1);
+                console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
+                return;
+            }
         }
+        console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
     }
-  }
+}
