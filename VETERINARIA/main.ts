@@ -26,11 +26,11 @@ console.log(diego);
 const gestionPacientes = new GestionPacientes();
 
 
-gestionPacientes.agregarPaciente("Firulais", "perro", 1);
-gestionPacientes.agregarPaciente("Tomy", "gato", 1);
+gestionPacientes.agregarPaciente("Firulais", "perro",clienteJuan.getId());
+gestionPacientes.agregarPaciente("Tomy", "gato",clienteJuan.getId());
 
 
-gestionPacientes.modificarPaciente(1, "Firulais", "Rufo");
+gestionPacientes.modificarPaciente(clienteJuan.getId(), "Firulais", "Rufo");
 
 
-gestionPacientes.eliminarPaciente(1, "Tomy");
+gestionPacientes.eliminarPaciente(clienteJuan.getId(), "Tomy");
