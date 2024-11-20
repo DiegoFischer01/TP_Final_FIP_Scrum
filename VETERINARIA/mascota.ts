@@ -14,28 +14,33 @@ export class Mascota {
 }
 }
 
-class GestionPacientes {
+export class GestionPacientes {
   private pacientes: Mascota[] = [];
 
   agregarPaciente(nombre: string, especie: string, idDueno: number): void {
-    const paciente = new Mascota(nombre, especie, idDueno);
-    this.pacientes.push(paciente);
-    console.log(`Paciente ${nombre} agregado con ID ${paciente.id}.`);
+      const paciente = new Mascota(nombre, especie, idDueno);
+      this.pacientes.push(paciente);
+      console.log(`Paciente ${nombre} agregado con ID ${paciente.id}.`);
   }
 
-  modificarPaciente(id: number, nombre?: string, especie?: string): void {
-    const paciente = this.pacientes.find(p => p.id === id);
-    if (paciente) {
-      if (nombre) paciente.nombre = nombre;
-      if (especie) paciente.especie = paciente.validarEspecie(especie);
-      console.log(`Paciente con ID ${id} modificado.`);
-    } else {
-      console.log(`Paciente con ID ${id} no encontrado.`);
-    }
+  modificarPaciente(id: number, nombre: string, nuevoNombre?: string, nuevaEspecie?: string): void {
+      const paciente = this.pacientes.find(p => p.id === id && p.nombre === nombre);
+      if (paciente) {
+          if (nuevoNombre) paciente.nombre = nuevoNombre;
+          if (nuevaEspecie) paciente.especie = paciente.validarEspecie(nuevaEspecie);
+          console.log(`Paciente con ID ${id} y nombre ${nombre} modificado.`);
+      } else {
+          console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
+      }
   }
 
-  eliminarPaciente(id: number): void {
-    this.pacientes = this.pacientes.filter(p => p.id !== id);
-    console.log(`Paciente con ID ${id} eliminado.`);
+  eliminarPaciente(id: number, nombre: string): void {
+      const indice = this.pacientes.findIndex(p => p.id === id && p.nombre === nombre);
+      if (indice !== -1) {
+          this.pacientes.splice(indice, 1);
+          console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
+      } else {
+          console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
+      }
   }
 }
