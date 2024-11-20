@@ -1,6 +1,6 @@
 import { Cliente } from "./cliente";
-import { Mascota } from "./Mascota";
-import { GestionPacientes } from "./Mascota";
+import { Mascota } from "./mascota";
+import { GestionPacientes } from "./mascota";
 
 const clienteJuan = new Cliente("Juan", "2284-345678", [
     { nombre: "Fido", especie: "perro" },
