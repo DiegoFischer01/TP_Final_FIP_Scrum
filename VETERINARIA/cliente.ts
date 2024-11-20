@@ -1,5 +1,5 @@
 import { generadorID, GeneradorID } from './id';
-import { Mascota } from './Mascota';
+import { Mascota } from './mascota';
 
 export class Cliente {
     id: number;
