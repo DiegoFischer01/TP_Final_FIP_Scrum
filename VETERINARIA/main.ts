@@ -1,5 +1,6 @@
 import { Cliente } from "./cliente";
-import { Mascota } from "./Mascota";
+import { Mascota } from "./mascota";
+import { GestionPacientes } from "./mascota";
 
 
 const clienteJuan = new Cliente("Juan", "2284-345678", [
@@ -19,3 +20,14 @@ diego.incrementarVisitas();
 diego.incrementarVisitas();
 diego.incrementarVisitas();
 console.log(diego);
+
+
+const gestionPacientes = new GestionPacientes();
+gestionPacientes.agregarPaciente("Firulais", "perro",clienteJuan.getId());
+gestionPacientes.agregarPaciente("Tomy", "gato",clienteJuan.getId());
+
+
+gestionPacientes.modificarPaciente(clienteJuan.getId(), "Firulais", "Rufo");
+
+
+gestionPacientes.eliminarPaciente(clienteJuan.getId(), "Tomy");
