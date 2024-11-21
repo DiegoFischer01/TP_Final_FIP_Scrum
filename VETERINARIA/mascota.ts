@@ -14,7 +14,8 @@ export class Mascota {
   }
 }
 
-class GestionPacientes {
+
+export class GestionPacientes {
     private pacientes: Mascota[] = [];
   
     agregarPaciente(nombre: string, especie: string, idDueno: number): void {
@@ -34,8 +35,14 @@ class GestionPacientes {
       }
     }
   
-    eliminarPaciente(id: number): void {
-      this.pacientes = this.pacientes.filter(p => p.id !== id);
-      console.log(`Paciente con ID ${id} eliminado.`);
-    }
+    eliminarPaciente(id: number, nombre: string): void {
+      for (let i = 0; i < this.pacientes.length; i++) {
+          if (this.pacientes[i].id === id && this.pacientes[i].nombre === nombre) {
+              this.pacientes.splice(i, 1);
+              console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
+              return;
+          }
+      }
+      console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
   }
+}

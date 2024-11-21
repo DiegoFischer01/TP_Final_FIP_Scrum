@@ -32,6 +32,7 @@ export class Cliente {
 
 class GestionClientes {
     private clientes: Cliente[] = [];
+
   
     agregarCliente(nombre: string, telefono: string, nombresMascotas: { nombre: string, especie: string }[]): void {
       const cliente = new Cliente(nombre, telefono, nombresMascotas);
@@ -55,3 +56,5 @@ class GestionClientes {
       console.log(`Cliente con ID ${id} eliminado.`);
     }
   }
+
+  
