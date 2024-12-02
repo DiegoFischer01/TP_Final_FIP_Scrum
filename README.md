@@ -44,3 +44,5 @@ exista. Si ya existe se debe volver a generar.
 Link de Repositorio remoto GitHub: https://github.com/DiegoFischer01/TP_Final_FIP_Scrum.git
 
 Link de Repositorio Trello: https://trello.com/invite/b/66b6910bdf8c6e1090d86ea4/ATTIcdb6b49cb8716cb4c73283426996df98417BECC0/programacion
+
+Link Diagrama(draw.io): https://app.diagrams.net/#G13lujPPw-5H01EL6D9UPzUP8hb__NgDQk#%7B%22pageId%22%3A%22U_pVJB1llHXQr5yPeNut%22%7D
