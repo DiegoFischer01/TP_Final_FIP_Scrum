@@ -40,3 +40,4 @@ veterinariaPetCare?.clientes.forEach(cliente => {
         console.log(`    Mascota: ${mascota.nombre}, Especie: ${mascota.especie}`);
     });
 });
+
