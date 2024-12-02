@@ -1,22 +1,14 @@
-import { generadorID } from './id';
+import { Proveedores } from "./proveedores";
+import { Veterinaria } from "./Veterinaria";
 
-class Veterinaria {
-    id: number;
-    nombre: string;
-    direccion: string;
+export abstract  class  RedVeterinarias {
 
-    constructor (nombre: string, direccion: string) {
-      this.id = generadorID.generarID();
-        this.nombre = nombre;
-        this.direccion = direccion;
-    }
-}
-
-class RedVeterinarias {
     private veterinarias: Veterinaria[] = [];
-  
-    agregarVeterinaria(nombre: string, direccion: string): void {
-      const veterinaria = new Veterinaria(nombre, direccion);
+    private proveedores: Proveedores []=[];
+
+    
+    agregarVeterinaria(nombre: string, direccion: string,clientes:[]): void {
+      const veterinaria = new Veterinaria(nombre, direccion,clientes);
       this.veterinarias.push(veterinaria);
       console.log(`Veterinaria ${nombre} agregada con ID ${veterinaria.id}.`);
     }
@@ -36,5 +28,6 @@ class RedVeterinarias {
       this.veterinarias = this.veterinarias.filter(v => v.id !== id);
       console.log(`Veterinaria con ID ${id} eliminada.`);
     }
-  }
-  
+
+}
+

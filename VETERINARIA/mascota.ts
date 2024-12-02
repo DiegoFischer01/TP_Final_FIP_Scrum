@@ -16,16 +16,17 @@ export class Mascota {
 
 
 export class GestionPacientes {
-    private pacientes: Mascota[] = [];
-  
+    private mascotas: Mascota[] = [];
+
+ 
     agregarPaciente(nombre: string, especie: string, idDueno: number): void {
       const paciente = new Mascota(nombre, especie, idDueno);
-      this.pacientes.push(paciente);
+      this.mascotas.push(paciente);
       console.log(`Paciente ${nombre} agregado con ID ${paciente.id}.`);
     }
   
     modificarPaciente(id: number, nombre?: string, especie?: string): void {
-      const paciente = this.pacientes.find(p => p.id === id);
+      const paciente = this.mascotas.find(p => p.id === id);
       if (paciente) {
         if (nombre) paciente.nombre = nombre;
         if (especie) paciente.especie = paciente.validarEspecie(especie);
@@ -36,13 +37,16 @@ export class GestionPacientes {
     }
   
     eliminarPaciente(id: number, nombre: string): void {
-      for (let i = 0; i < this.pacientes.length; i++) {
-          if (this.pacientes[i].id === id && this.pacientes[i].nombre === nombre) {
-              this.pacientes.splice(i, 1);
+      for (let i = 0; i < this.mascotas.length; i++) {
+          if (this.mascotas[i].id === id && this.mascotas[i].nombre === nombre) {
+              this.mascotas.splice(i, 1);
               console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
               return;
           }
       }
       console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
   }
+
+  
+
 }
