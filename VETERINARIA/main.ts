@@ -10,8 +10,8 @@ const redVeterinarias = new RedVeterinarias();
 
 // Crear cliente Diego con dos mascotas
 const diegoMascotas = [
-    { nombre: "Firulais", especie: "perro" },
-    { nombre: "Michi", especie: "gato" }
+    { nombre: "Kira", especie: "perro" },
+    { nombre: "Ciri", especie: "gato" }
 ];
 const diego = new Cliente("Diego", "123456789", diegoMascotas);
 

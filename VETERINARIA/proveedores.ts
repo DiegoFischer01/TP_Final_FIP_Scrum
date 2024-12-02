@@ -12,7 +12,7 @@ export class Proveedores {
     }
 }
 
-class GestionProveedores {
+class RedProveedores {
     private proveedores: Proveedores[] = [];
   
     agregarProveedor(nombre: string, telefono: string): void {
