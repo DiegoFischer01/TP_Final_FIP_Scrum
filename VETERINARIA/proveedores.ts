@@ -1,4 +1,4 @@
-import { generadorID } from './id';
+import { generadorID } from "./id";
 
 export class Proveedores {
     id: number;
