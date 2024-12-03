@@ -1,4 +1,4 @@
-import { RedVeterinarias } from '../redVeterinaria'; 
+import { RedVeterinarias } from './redVeterinarias'; 
 import { Veterinaria } from './veterinarias'; 
 import { Cliente } from './cliente'; 
 import { Mascota } from './mascota'; 
