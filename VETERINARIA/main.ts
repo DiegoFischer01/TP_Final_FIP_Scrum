@@ -1,8 +1,6 @@
 import { RedVeterinarias } from './redVeterinarias'; 
 import { Cliente } from './cliente'; 
 
-
-
 // Crear instancia de la red de veterinarias
 const redVeterinarias = new RedVeterinarias();
 
@@ -17,25 +15,25 @@ const diego = new Cliente("Diego", "123456789", diegoMascotas);
 redVeterinarias.agregarVeterinaria("PetCare", "123 Calle Falsa", []);
 
 // Obtener la veterinaria PetCare
-const veterinariaPetCare = redVeterinarias.getVeterinarias().find(vet => vet.nombre === "PetCare");
+const veterinariaPetCare = redVeterinarias.getVeterinarias().find(vet => vet.getNombre() === "PetCare");
 
 // Agregar el cliente Diego a la veterinaria PetCare
-veterinariaPetCare?.agregarCliente(diego.nombre, diego.telefono, diegoMascotas);
+veterinariaPetCare?.agregarCliente(diego.getNombre(), diego.getTelefono(), diegoMascotas);
 
 // Mostrar los datos del cliente Diego y sus mascotas
-console.log(`Cliente: ${diego.nombre}`);
-console.log(`Teléfono: ${diego.telefono}`);
+console.log(`Cliente: ${diego.getNombre()}`);
+console.log(`Teléfono: ${diego.getTelefono()}`);
 console.log('Mascotas:');
 diego.getMascotas().forEach(mascota => {
-    console.log(`- ${mascota.nombre} (${mascota.especie})`);
+    console.log(`- ${mascota.getNombre()} (${mascota.getEspecie()})`);
 });
 
 // Mostrar todos los clientes de PetCare
 console.log('\n--- Lista de Clientes de PetCare ---');
-veterinariaPetCare?.clientes.forEach(cliente => {
-    console.log(`ID: ${cliente.id}, Nombre: ${cliente.nombre}, Teléfono: ${cliente.telefono}, VIP: ${cliente.vip}`);
+veterinariaPetCare?.getClientes().forEach(cliente => {
+    console.log(`ID: ${cliente.getId()}, Nombre: ${cliente.getNombre()}, Teléfono: ${cliente.getTelefono()}, VIP: ${cliente.isVip()}`);
     cliente.getMascotas().forEach(mascota => {
-        console.log(`    Mascota: ${mascota.nombre}, Especie: ${mascota.especie}`);
+        console.log(`    Mascota: ${mascota.getNombre()}, Especie: ${mascota.getEspecie()}`);
     });
 });
 

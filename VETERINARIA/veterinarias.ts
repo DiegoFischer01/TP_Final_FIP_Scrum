@@ -2,13 +2,12 @@ import { generadorID } from "./id";
 import { Cliente } from "./cliente";
 import { Mascota } from "./mascota";
 
-
 export class Veterinaria {
-    id: number;
-    nombre: string;
-    direccion: string;
-    clientes: Cliente[] = [];
-    mascotas: Mascota[] = [];
+    private id: number;
+    private nombre: string;
+    private direccion: string;
+    private clientes: Cliente[] = [];
+    private mascotas: Mascota[] = [];
 
     constructor(nombre: string, direccion: string, clientes: any[]) {
         this.id = generadorID.generarID();
@@ -17,53 +16,71 @@ export class Veterinaria {
         this.clientes = clientes;
     }
 
-    agregarCliente(nombre: string, telefono: string, nombresMascotas: { nombre: string, especie: string }[]): void {
-        const cliente = new Cliente(nombre, telefono, nombresMascotas);
-        this.clientes.push(cliente);
-        console.log(`Cliente ${nombre} agregado con ID ${cliente.id}.`);
+    public getId(): number {
+        return this.id;
     }
 
-    modificarCliente(id: number, nombre?: string, telefono?: string): void {
-        const cliente = this.clientes.find(c => c.id === id);
+    public getNombre(): string {
+        return this.nombre;
+    }
+
+    public setNombre(nombre: string): void {
+        this.nombre = nombre;
+    }
+
+    public getDireccion(): string {
+        return this.direccion;
+    }
+
+    public setDireccion(direccion: string): void {
+        this.direccion = direccion;
+    }
+
+    public getClientes(): Cliente[] {
+        return this.clientes;
+    }
+
+    public agregarCliente(nombre: string, telefono: string, nombresMascotas: { nombre: string, especie: string }[]): void {
+        const cliente = new Cliente(nombre, telefono, nombresMascotas);
+        this.clientes.push(cliente);
+        console.log(`Cliente ${nombre} agregado con ID ${cliente.getId()}.`);
+    }
+
+    public modificarCliente(id: number, nombre?: string, telefono?: string): void {
+        const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {
-            if (nombre) cliente.nombre = nombre;
-            if (telefono) cliente.telefono = telefono;
+            if (nombre) cliente.setNombre(nombre);
+            if (telefono) cliente.setTelefono(telefono);
             console.log(`Cliente con ID ${id} modificado.`);
         } else {
             console.log(`Cliente con ID ${id} no encontrado.`);
         }
     }
 
-    eliminarCliente(id: number): void {
-        this.clientes = this.clientes.filter(c => c.id !== id);
+    public eliminarCliente(id: number): void {
+        this.clientes = this.clientes.filter(c => c.getId() !== id);
         console.log(`Cliente con ID ${id} eliminado.`);
     }
 
-    agregarPaciente(nombre: string, especie: string, idDueno: number): void {
-        const mascotas = new Mascota(nombre, especie, idDueno);
-        this.mascotas.push(mascotas);
-        console.log(`Paciente ${nombre} agregado con ID ${mascotas.id}.`);
+    public agregarPaciente(nombre: string, especie: string, idDueno: number): void {
+        const mascota = new Mascota(nombre, especie, idDueno);
+        this.mascotas.push(mascota);
+        console.log(`Paciente ${nombre} agregado con ID ${mascota.getId()}.`);
     }
 
-    modificarPaciente(id: number, nombre?: string, especie?: string): void {
-        const paciente = this.mascotas.find(p => p.id === id);
+    public modificarPaciente(id: number, nombre?: string, especie?: string): void {
+        const paciente = this.mascotas.find(p => p.getId() === id);
         if (paciente) {
-            if (nombre) paciente.nombre = nombre;
-            if (especie) paciente.especie = paciente.validarEspecie(especie);
+            if (nombre) paciente.setNombre(nombre);
+            if (especie) paciente.setEspecie(especie);
             console.log(`Paciente con ID ${id} modificado.`);
         } else {
             console.log(`Paciente con ID ${id} no encontrado.`);
         }
     }
 
-    eliminarPaciente(id: number, nombre: string): void {
-        for (let i = 0; i < this.mascotas.length; i++) {
-            if (this.mascotas[i].id === id && this.mascotas[i].nombre === nombre) {
-                this.mascotas.splice(i, 1);
-                console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
-                return;
-            }
-        }
-        console.log(`Paciente con ID ${id} y nombre ${nombre} no encontrado.`);
+    public eliminarPaciente(id: number, nombre: string): void {
+        this.mascotas = this.mascotas.filter(m => m.getId() !== id || m.getNombre() !== nombre);
+        console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
     }
 }
