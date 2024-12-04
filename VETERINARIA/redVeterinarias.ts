@@ -1,7 +1,6 @@
 import { Proveedores } from "./proveedores";
 import { Veterinaria } from "./veterinarias";
 
-
 export class RedVeterinarias {
     private veterinarias: Veterinaria[] = [];
     private proveedores: Proveedores[] = [];
@@ -9,14 +8,14 @@ export class RedVeterinarias {
     agregarVeterinaria(nombre: string, direccion: string, clientes: any[]): void {
         const veterinaria = new Veterinaria(nombre, direccion, clientes);
         this.veterinarias.push(veterinaria);
-        console.log(`Veterinaria ${nombre} agregada con ID ${veterinaria.id}.`);
+        console.log(`Veterinaria ${nombre} agregada con ID ${veterinaria.getId()}.`);
     }
 
     modificarVeterinaria(id: number, nombre?: string, direccion?: string): void {
-        const vet = this.veterinarias.find(v => v.id === id);
+        const vet = this.veterinarias.find(v => v.getId() === id);
         if (vet) {
-            if (nombre) vet.nombre = nombre;
-            if (direccion) vet.direccion = direccion;
+            if (nombre) vet.setNombre(nombre);
+            if (direccion) vet.setDireccion(direccion);
             console.log(`Veterinaria con ID ${id} modificada.`);
         } else {
             console.log(`Veterinaria con ID ${id} no encontrada.`);
@@ -24,7 +23,7 @@ export class RedVeterinarias {
     }
 
     eliminarVeterinaria(id: number): void {
-        this.veterinarias = this.veterinarias.filter(v => v.id !== id);
+        this.veterinarias = this.veterinarias.filter(v => v.getId() !== id);
         console.log(`Veterinaria con ID ${id} eliminada.`);
     }
 
@@ -35,7 +34,7 @@ export class RedVeterinarias {
     mostrarVeterinarias(): void {
         console.log('\n--- Lista de Veterinarias ---');
         this.veterinarias.forEach(v => {
-            console.log(`ID: ${v.id}, Nombre: ${v.nombre}, Dirección: ${v.direccion}`);
+            console.log(`ID: ${v.getId()}, Nombre: ${v.getNombre()}, Dirección: ${v.getDireccion()}`);
         });
     }
 }
