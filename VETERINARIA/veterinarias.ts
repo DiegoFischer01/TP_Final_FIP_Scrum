@@ -46,6 +46,19 @@ export class Veterinaria {
         console.log(`Cliente ${nombre} agregado con ID ${cliente.getId()}.`);
     }
 
+    public registrarVisitaCliente(id: number): void {
+        const cliente = this.clientes.find(c => c.getId() === id);
+        if (cliente) {
+            cliente.incrementarVisitas();
+            console.log(`Visita registrada para el cliente con ID ${id}.`);
+            if (cliente.isVip()) {
+                console.log(`¡Felicidades! El cliente ${cliente.getNombre()} es ahora VIP.`);
+            }
+        } else {
+            console.log(`Cliente con ID ${id} no encontrado.`);
+        }
+    }
+
     public modificarCliente(id: number, nombre?: string, telefono?: string): void {
         const cliente = this.clientes.find(c => c.getId() === id);
         if (cliente) {
