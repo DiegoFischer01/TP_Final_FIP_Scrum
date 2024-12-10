@@ -17,6 +17,7 @@ export class Cliente {
         this.vip = false;
         this.mascotas = nombresMascotas.map(mascota => new Mascota(mascota.nombre, mascota.especie, this.id));
     }
+    
 
     public getId(): number { 
         return this.id; 
