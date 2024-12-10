@@ -11,7 +11,8 @@ function mainMenu() {
     console.log('2. Gestionar Proveedores');
     console.log('3. Agregar Cliente');
     console.log('4. Mostrar Clientes y Mascotas');
-    console.log('5. Salir');
+    console.log('5. Registrar Visita de Cliente'); // Nueva opción para registrar visitas
+    console.log('6. Salir');
     const option = readline.question('Selecciona una opcion: ');
 
     switch (option) {
@@ -28,6 +29,9 @@ function mainMenu() {
             mostrarClientesYMascotas();
             break;
         case '5':
+            registrarVisitaCliente();
+            break;
+        case '6':
             console.log('Saliendo...');
             process.exit();
         default:
@@ -41,12 +45,12 @@ function agregarCliente() {
     const veterinaria = redVeterinarias.getVeterinarias().find(vet => vet.getNombre() === nombreVet);
 
     if (!veterinaria) {
-        console.log(`Veterinaria ${nombreVet} no encontrada. Por favor, agrega la veterinaria antes de anadir clientes.`);
+        console.log(`Veterinaria ${nombreVet} no encontrada. Por favor, agrega la veterinaria antes de añadir clientes.`);
         return mainMenu();
     }
 
     const nombre = readline.question('Nombre del cliente: ');
-    const telefono = readline.question('Telefono del cliente: ');
+    const telefono = readline.question('Teléfono del cliente: ');
 
     const nombresMascotas: { nombre: string, especie: string }[] = [];
     let agregarOtraMascota = true;
@@ -75,11 +79,26 @@ function mostrarClientesYMascotas() {
 
     console.log(`\n--- Lista de Clientes de la Veterinaria ${nombreVet} ---`);
     veterinaria.getClientes().forEach(cliente => {
-        console.log(`ID: ${cliente.getId()}, Nombre: ${cliente.getNombre()}, Telefono: ${cliente.getTelefono()}, VIP: ${cliente.isVip()}`);
+        console.log(`ID: ${cliente.getId()}, Nombre: ${cliente.getNombre()}, Teléfono: ${cliente.getTelefono()}, VIP: ${cliente.isVip()}`);
         cliente.getMascotas().forEach(mascota => {
-            console.log(`    Mascota: ${mascota.getNombre()}, Especie: ${mascota.getEspecie()}, ID Dueno: ${mascota.getId()}`);
+            console.log(`    Mascota: ${mascota.getNombre()}, Especie: ${mascota.getEspecie()}, ID Dueño: ${mascota.getId()}`);
         });
     });
+    mainMenu();
+}
+
+// Nueva función para registrar visitas de clientes
+function registrarVisitaCliente() {
+    const nombreVet = readline.question('Nombre de la veterinaria: ');
+    const veterinaria = redVeterinarias.getVeterinarias().find(vet => vet.getNombre() === nombreVet);
+
+    if (!veterinaria) {
+        console.log(`Veterinaria ${nombreVet} no encontrada.`);
+        return mainMenu();
+    }
+
+    const idCliente = parseInt(readline.question('ID del cliente: '), 10);
+    veterinaria.registrarVisitaCliente(idCliente);
     mainMenu();
 }
 
