@@ -49,6 +49,10 @@ export class Cliente {
         }
     }
 
+    public getVisitas(): number {
+        return this.visitas;
+    }
+
     public getMascotas(): Mascota[] {
         return this.mascotas;
     }
