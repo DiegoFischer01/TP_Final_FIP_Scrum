@@ -35,7 +35,7 @@ function mainMenu() {
             console.log('Saliendo...');
             process.exit();
         default:
-            console.log('Opcion no valida, intenta nuevamente.');
+            console.log('Opción no válida, intenta nuevamente.');
             mainMenu();
     }
 }
@@ -77,13 +77,7 @@ function mostrarClientesYMascotas() {
         return mainMenu();
     }
 
-    console.log(`\n--- Lista de Clientes de la Veterinaria ${nombreVet} ---`);
-    veterinaria.getClientes().forEach(cliente => {
-        console.log(`ID: ${cliente.getId()}, Nombre: ${cliente.getNombre()}, Teléfono: ${cliente.getTelefono()}, VIP: ${cliente.isVip()}`);
-        cliente.getMascotas().forEach(mascota => {
-            console.log(`    Mascota: ${mascota.getNombre()}, Especie: ${mascota.getEspecie()}, ID Dueño: ${mascota.getId()}`);
-        });
-    });
+    veterinaria.mostrarClientesYMascotas();
     mainMenu();
 }
 

@@ -96,4 +96,14 @@ export class Veterinaria {
         this.mascotas = this.mascotas.filter(m => m.getId() !== id || m.getNombre() !== nombre);
         console.log(`Paciente con ID ${id} y nombre ${nombre} eliminado.`);
     }
+
+    public mostrarClientesYMascotas(): void {
+        console.log(`\n--- Lista de Clientes de la Veterinaria ${this.nombre} ---`);
+        this.clientes.forEach(cliente => {
+            console.log(`ID: ${cliente.getId()}, Nombre: ${cliente.getNombre()}, Teléfono: ${cliente.getTelefono()}, VIP: ${cliente.isVip()}, Visitas: ${cliente.getVisitas()}`);
+            cliente.getMascotas().forEach(mascota => {
+                console.log(`    Mascota: ${mascota.getNombre()}, Especie: ${mascota.getEspecie()}, ID Dueño: ${mascota.getId()}`);
+            });
+        });
+    }
 }
