@@ -1,5 +1,4 @@
 import { Veterinaria } from "./veterinarias";
-import * as fs from 'fs';
 
 export class RedVeterinarias {
     private veterinarias: Veterinaria[] = [];
@@ -37,7 +36,6 @@ export class RedVeterinarias {
         });
     }
 
-    // Modificado método para manejar el menú de veterinarias
     menuVeterinarias(navigateToMainMenu: () => void): void {
         const readline = require('readline-sync');
         console.log('\n--- Menu de Veterinarias ---');
@@ -72,19 +70,5 @@ export class RedVeterinarias {
                 console.log('Opcion no valida, intenta nuevamente.');
                 this.menuVeterinarias(navigateToMainMenu);
         }
-    }
-
-    // Métodos para serializar y deserializar datos
-    cargarDatos(): void {
-        if (fs.existsSync('veterinarias.json')) {
-            const data = fs.readFileSync('veterinarias.json', 'utf-8');
-            const jsonData = JSON.parse(data);
-            this.veterinarias = jsonData.map((v: any) => Veterinaria.fromJSON(v));
-        }
-    }
-
-    guardarDatos(): void {
-        const jsonData = JSON.stringify(this.veterinarias.map(v => v.toJSON()), null, 2);
-        fs.writeFileSync('veterinarias.json', jsonData, 'utf-8');
     }
 }
