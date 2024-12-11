@@ -1,35 +1,44 @@
 export class Mascota {
-  private id: number;
-  private nombre: string;
-  private especie: string;
+    private id: number;
+    private nombre: string;
+    private especie: string;
 
-  constructor(nombre: string, especie: string, idCliente: number) {
-      this.nombre = nombre;
-      this.especie = this.validarEspecie(especie);
-      this.id = idCliente;
-  }
+    constructor(nombre: string, especie: string, idCliente: number) {
+        this.nombre = nombre;
+        this.especie = this.validarEspecie(especie);
+        this.id = idCliente;
+    }
 
-  private validarEspecie(especie: string): string {
-      return ["perro", "gato"].includes(especie.toLowerCase()) ? especie : "exótica";
-  }
+    private validarEspecie(especie: string): string {
+        return ["perro", "gato"].includes(especie.toLowerCase()) ? especie : "exótica";
+    }
 
-  public getId(): number {
-      return this.id;
-  }
+    public getId(): number {
+        return this.id;
+    }
 
-  public getNombre(): string {
-      return this.nombre;
-  }
+    public getNombre(): string {
+        return this.nombre;
+    }
 
-  public setNombre(nombre: string): void {
-      this.nombre = nombre;
-  }
+    public setNombre(nombre: string): void {
+        this.nombre = nombre;
+    }
 
-  public getEspecie(): string {
-      return this.especie;
-  }
+    public getEspecie(): string {
+        return this.especie;
+    }
 
-  public setEspecie(especie: string): void {
-      this.especie = this.validarEspecie(especie);
-  }
+    public setEspecie(especie: string): void {
+        this.especie = this.validarEspecie(especie);
+    }
+
+    // Métodos para serializar y deserializar datos
+    public toJSON(): any {
+        return {
+            id: this.id,
+            nombre: this.nombre,
+            especie: this.especie,
+        };
+    }
 }

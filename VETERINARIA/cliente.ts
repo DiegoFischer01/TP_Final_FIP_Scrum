@@ -56,4 +56,25 @@ export class Cliente {
     public getMascotas(): Mascota[] {
         return this.mascotas;
     }
+
+    // Métodos para serializar y deserializar datos
+    public static fromJSON(data: any): Cliente {
+        const nombresMascotas = data.mascotas.map((m: any) => new Mascota(m.nombre, m.especie, data.id));
+        const cliente = new Cliente(data.nombre, data.telefono, nombresMascotas);
+        cliente.id = data.id;
+        cliente.visitas = data.visitas;
+        cliente.vip = data.vip;
+        return cliente;
+    }
+
+    public toJSON(): any {
+        return {
+            id: this.id,
+            nombre: this.nombre,
+            telefono: this.telefono,
+            vip: this.vip,
+            visitas: this.visitas,
+            mascotas: this.mascotas.map(m => m.toJSON()),
+        };
+    }
 }

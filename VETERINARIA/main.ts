@@ -4,6 +4,8 @@ import { Proveedores } from './proveedores';
 
 // Crear instancia de la red de veterinarias
 const redVeterinarias = new RedVeterinarias();
+redVeterinarias.cargarDatos();
+Proveedores.cargarDatos();
 
 function mainMenu() {
     console.log('\n--- Menu Principal ---');
@@ -33,6 +35,8 @@ function mainMenu() {
             break;
         case '6':
             console.log('Saliendo...');
+            redVeterinarias.guardarDatos();
+            Proveedores.guardarDatos();
             process.exit();
         default:
             console.log('Opción no válida, intenta nuevamente.');

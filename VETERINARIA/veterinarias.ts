@@ -106,4 +106,21 @@ export class Veterinaria {
             });
         });
     }
+
+    // Métodos para serializar y deserializar datos
+    public static fromJSON(data: any): Veterinaria {
+        const clientes = data.clientes.map((c: any) => Cliente.fromJSON(c));
+        const veterinaria = new Veterinaria(data.nombre, data.direccion, clientes);
+        veterinaria.id = data.id;
+        return veterinaria;
+    }
+
+    public toJSON(): any {
+        return {
+            id: this.id,
+            nombre: this.nombre,
+            direccion: this.direccion,
+            clientes: this.clientes.map(c => c.toJSON()),
+        };
+    }
 }
