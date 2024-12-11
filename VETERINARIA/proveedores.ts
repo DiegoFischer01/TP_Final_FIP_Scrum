@@ -1,4 +1,5 @@
 import { generadorID } from "./id";
+import * as fs from 'fs';
 import readline from 'readline-sync';
 
 export class Proveedores {
@@ -107,5 +108,33 @@ export class Proveedores {
                 console.log('Opcion no valida, intenta nuevamente.');
                 Proveedores.menuProveedores(navigateToMainMenu);
         }
+    }
+
+    // Métodos para serializar y deserializar datos
+    public static fromJSON(data: any): Proveedores {
+        const proveedor = new Proveedores(data.nombre, data.telefono);
+        proveedor.id = data.id;
+        return proveedor;
+    }
+
+    public toJSON(): any {
+        return {
+            id: this.id,
+            nombre: this.nombre,
+            telefono: this.telefono,
+        };
+    }
+
+    static cargarDatos(): void {
+        if (fs.existsSync('proveedores.json')) {
+            const data = fs.readFileSync('proveedores.json', 'utf-8');
+            const jsonData = JSON.parse(data);
+            Proveedores.proveedores = jsonData.map((p: any) => Proveedores.fromJSON(p));
+        }
+    }
+
+    static guardarDatos(): void {
+        const jsonData = JSON.stringify(Proveedores.proveedores.map(p => p.toJSON()), null, 2);
+        fs.writeFileSync('proveedores.json', jsonData, 'utf-8');
     }
 }
