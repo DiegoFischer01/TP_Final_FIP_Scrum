@@ -35,7 +35,7 @@ function mainMenu() {
             console.log('Saliendo...');
             process.exit();
         default:
-            console.log('Opción no válida, intenta nuevamente.');
+            console.log('Opcion no valida, intenta nuevamente.');
             mainMenu();
     }
 }
@@ -50,7 +50,7 @@ function agregarCliente() {
     }
 
     const nombre = readline.question('Nombre del cliente: ');
-    const telefono = readline.question('Teléfono del cliente: ');
+    const telefono = readline.question('Telefono del cliente: ');
 
     const nombresMascotas: { nombre: string, especie: string }[] = [];
     let agregarOtraMascota = true;
