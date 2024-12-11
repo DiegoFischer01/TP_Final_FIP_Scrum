@@ -43,7 +43,7 @@ export class RedVeterinarias {
         console.log('2. Modificar Veterinaria');
         console.log('3. Eliminar Veterinaria');
         console.log('4. Mostrar Veterinarias');
-        console.log('5. Gestionar Clientes'); // Nueva opción para gestionar clientes
+        console.log('5. Gestionar Clientes');
         console.log('6. Volver al Menu Principal');
         const option = readline.question('Selecciona una opcion: ');
 
@@ -83,7 +83,9 @@ export class RedVeterinarias {
         console.log('1. Agregar Cliente');
         console.log('2. Modificar Cliente');
         console.log('3. Eliminar Cliente');
-        console.log('4. Volver al Menu de Veterinarias');
+        console.log('4. Modificar Mascota');
+        console.log('5. Eliminar Mascota');
+        console.log('6. Volver al Menu de Veterinarias');
         const option = readline.question('Selecciona una opcion: ');
 
         switch (option) {
@@ -136,6 +138,31 @@ export class RedVeterinarias {
                 console.log(`Cliente con ID ${idClienteDel} eliminado.`);
                 return this.menuClientes();
             case '4':
+                const nombreVetModMascota = readline.question('Nombre de la veterinaria para modificar la mascota: ');
+                const veterinariaModMascota = this.veterinarias.find(vet => vet.getNombre() === nombreVetModMascota);
+                if (!veterinariaModMascota) {
+                    console.log(`Veterinaria ${nombreVetModMascota} no encontrada.`);
+                    return this.menuClientes();
+                }
+                const idPacienteMod = parseInt(readline.question('ID de la mascota a modificar: '), 10);
+                const nuevoNombreMascota = readline.question('Nuevo nombre de la mascota (dejar en blanco para no cambiar): ');
+                const nuevaEspecieMascota = readline.question('Nueva especie de la mascota (dejar en blanco para no cambiar): ');
+                veterinariaModMascota.modificarPaciente(idPacienteMod, nuevoNombreMascota, nuevaEspecieMascota);
+                console.log(`Mascota con ID ${idPacienteMod} modificada.`);
+                return this.menuClientes();
+            case '5':
+                const nombreVetDelMascota = readline.question('Nombre de la veterinaria para eliminar la mascota: ');
+                const veterinariaDelMascota = this.veterinarias.find(vet => vet.getNombre() === nombreVetDelMascota);
+                if (!veterinariaDelMascota) {
+                    console.log(`Veterinaria ${nombreVetDelMascota} no encontrada.`);
+                    return this.menuClientes();
+                }
+                const idPacienteDel = parseInt(readline.question('ID de la mascota a eliminar: '), 10);
+                const nombreMascotaDel = readline.question('Nombre de la mascota a eliminar: ');
+                veterinariaDelMascota.eliminarPaciente(idPacienteDel, nombreMascotaDel);
+                console.log(`Mascota con ID ${idPacienteDel} y nombre ${nombreMascotaDel} eliminada.`);
+                return this.menuClientes();
+            case '6':
                 this.menuVeterinarias(() => {});
                 break;
             default:
