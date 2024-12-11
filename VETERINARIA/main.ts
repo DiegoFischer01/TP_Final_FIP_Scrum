@@ -4,8 +4,6 @@ import { Proveedores } from './proveedores';
 
 // Crear instancia de la red de veterinarias
 const redVeterinarias = new RedVeterinarias();
-redVeterinarias.cargarDatos();
-Proveedores.cargarDatos();
 
 function mainMenu() {
     console.log('\n--- Menu Principal ---');
@@ -13,7 +11,7 @@ function mainMenu() {
     console.log('2. Gestionar Proveedores');
     console.log('3. Agregar Cliente');
     console.log('4. Mostrar Clientes y Mascotas');
-    console.log('5. Registrar Visita de Cliente'); // Nueva opción para registrar visitas
+    console.log('5. Registrar Visita de Cliente');
     console.log('6. Salir');
     const option = readline.question('Selecciona una opcion: ');
 
@@ -35,8 +33,6 @@ function mainMenu() {
             break;
         case '6':
             console.log('Saliendo...');
-            redVeterinarias.guardarDatos();
-            Proveedores.guardarDatos();
             process.exit();
         default:
             console.log('Opción no válida, intenta nuevamente.');
@@ -85,7 +81,6 @@ function mostrarClientesYMascotas() {
     mainMenu();
 }
 
-// Nueva función para registrar visitas de clientes
 function registrarVisitaCliente() {
     const nombreVet = readline.question('Nombre de la veterinaria: ');
     const veterinaria = redVeterinarias.getVeterinarias().find(vet => vet.getNombre() === nombreVet);

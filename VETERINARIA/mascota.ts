@@ -32,13 +32,4 @@ export class Mascota {
     public setEspecie(especie: string): void {
         this.especie = this.validarEspecie(especie);
     }
-
-    // Métodos para serializar y deserializar datos
-    public toJSON(): any {
-        return {
-            id: this.id,
-            nombre: this.nombre,
-            especie: this.especie,
-        };
-    }
 }
